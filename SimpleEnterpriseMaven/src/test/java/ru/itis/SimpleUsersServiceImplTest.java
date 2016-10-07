@@ -22,9 +22,9 @@ public class SimpleUsersServiceImplTest {
     public void setUp() throws Exception {
         UsersDao usersDao = mock(UsersDao.class);
         List<User> testRegisteredUsers = new ArrayList<>();
-        User marsel = new User("Marsel", "qwerty007", 22);
-        User salavat = new User("Salavat", "qwerty008", 20);
-        User almaz = new User("Almaz","asprin12", 21);
+        User marsel = new User("Marsel", "qwerty007", 22, 1);
+        User salavat = new User("Salavat", "qwerty008", 20, 2);
+        User almaz = new User("Almaz","asprin12", 21, 3);
 
         testRegisteredUsers.add(marsel);
         testRegisteredUsers.add(salavat);

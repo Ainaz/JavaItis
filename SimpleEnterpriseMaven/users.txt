@@ -1,3 +1,4 @@
 1 Marsel qwerty008 22
-2 Salavat qwerty007 20
-3 Almaz qwerty009 19
+2 Salavat qwerty009 20
+3 Almaz qwerty007 18
+

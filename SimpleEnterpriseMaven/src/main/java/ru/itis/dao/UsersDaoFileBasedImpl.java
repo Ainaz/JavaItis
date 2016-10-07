@@ -9,13 +9,14 @@ import java.util.List;
 
 public class UsersDaoFileBasedImpl implements UsersDao {
 
+    public static final String FILE_PATH = "C:\\Users\\KFU-user\\Desktop\\JavaItis\\SimpleEnterpriseMaven";
+    public static final String FILE_USERS = "\\users.txt";
     private BufferedReader fileReader;
     private BufferedWriter fileWriter;
 
     public UsersDaoFileBasedImpl(String fileName) {
         try {
             fileReader = new BufferedReader(new FileReader(fileName));
-            fileWriter = new BufferedWriter(new FileWriter(fileName));
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
@@ -51,20 +52,30 @@ public class UsersDaoFileBasedImpl implements UsersDao {
     @Override
     public void save(User user) {
         try {
-            fileWriter.newLine();
+            fileWriter = new BufferedWriter(new FileWriter(FILE_PATH + FILE_USERS, true));
             fileWriter.write(user.getId() + " " + user.getName() + " " + user.getPassword() + " " + user.getAge());
+            fileWriter.newLine();
+            fileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("SomeError");
         }
     }
 
     @Override
-    public void delete(int userId) {
+    public void delete(int userId) throws IOException{
+        List<User> temp = new ArrayList<>();
         for (User user : getAll()) {
-            if (userId == user.getId()){
-
+            if(userId != user.getId()){
+            temp.add(user);
             }
         }
+
+        fileWriter = new BufferedWriter(new FileWriter(FILE_PATH + FILE_USERS));
+
+        for (User user : temp) {
+            save(user);
+        }
+        fileWriter.close();
     }
 
     private User parseStringAsUser(String line) {
