@@ -28,4 +28,9 @@ public class SimpleUsersServiceImpl implements SimpleUsersService {
 
         return false;
     }
+
+    @Override
+    public void setUsersDao(UsersDao usersDao) {
+        this.usersDao = usersDao;
+    }
 }
