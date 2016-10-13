@@ -1,4 +1,4 @@
-package connection;
+package factory;
 
 import java.sql.Connection;
 
@@ -17,10 +17,15 @@ public class ConnectionSupportFactory {
     private ConnectionSupportFactory(){
         try {
             properties = new Properties();
-            properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\SQL.properties"));
+            properties.load(new FileInputStream("C:\\Users\\Ainaz\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\SQL.properties"));
 
-            Class.forName(properties.getProperty("jdbc.driver"));
-            connection = DriverManager.getConnection(properties.getProperty("jdbc.URL"), properties.getProperty("jdbc.name"), properties.getProperty("jdbc.password"));
+            String driverName = properties.getProperty("jdbc.driver");
+            String URL = properties.getProperty("jdbc.URL");
+            String name = properties.getProperty("jdbc.name");
+            String password = properties.getProperty("jdbc.password");
+
+            Class.forName(driverName);
+            connection = DriverManager.getConnection(URL, name, password);
         }catch (ClassNotFoundException e) {
             System.out.println(e);
         } catch (IOException e) {

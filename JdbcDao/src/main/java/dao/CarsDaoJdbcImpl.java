@@ -1,4 +1,4 @@
-package jdbc;
+package dao;
 
 import com.sun.org.apache.bcel.internal.generic.Select;
 import dao.CarsDao;
@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 
 public class CarsDaoJdbcImpl implements CarsDao {
+    public final String SQL_ADD_CARS = "INSERT INTO auto (auto_id, auto_name, mileage) VALUES (?,?,?)";
+    public final String SQL_UPDATE_CARS = "UPDATE auto SET mileage = ? WHERE auto_id = ?";
     public final String SQL_DELETE_CARS = "DELETE FROM auto WHERE auto_id = ?";
     public final String SQL_ALL_CARS = "SELECT * FROM auto";
     public final String SQL_FIND_CARS = "SELECT * FROM auto WHERE auto_id = ?";
@@ -65,10 +67,25 @@ public class CarsDaoJdbcImpl implements CarsDao {
     }
 
     public void add(Car car) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_ADD_CARS);
+            preparedStatement.setInt(1, car.getId());
+            preparedStatement.setString(2, car.getName());
+            preparedStatement.setInt(3, car.getMileage());
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public void update(Car car) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_CARS);
+            preparedStatement.setInt(2, car.getMileage());
+            preparedStatement.setInt(1, car.getId());
 
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
