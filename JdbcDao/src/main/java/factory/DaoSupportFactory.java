@@ -13,7 +13,7 @@ import java.sql.Connection;
 import java.util.Properties;
 
 public class DaoSupportFactory {
-    private static DaoSupportFactory instanse;
+    private static DaoSupportFactory instance;
 
     private Properties properties;
     private OwnersDao ownersDao;
@@ -22,7 +22,7 @@ public class DaoSupportFactory {
     private DaoSupportFactory(){
        try {
            properties = new Properties();
-           properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\dao.properties"));
+           properties.load(new FileInputStream("C:\\Users\\Ainaz\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\dao.properties"));
 
            String carsDaoClass = properties.getProperty("carsdao.class");
            String ownersDaoClass = properties.getProperty("ownersdao.class");
@@ -54,11 +54,11 @@ public class DaoSupportFactory {
     }
 
     static {
-        instanse = new DaoSupportFactory();
+        instance = new DaoSupportFactory();
     }
 
-    public static DaoSupportFactory getInstanse() {
-        return instanse;
+    public static DaoSupportFactory getInstance() {
+        return instance;
     }
 
     public OwnersDao getOwnersDao() {
