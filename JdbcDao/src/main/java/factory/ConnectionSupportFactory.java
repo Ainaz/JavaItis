@@ -17,7 +17,7 @@ public class ConnectionSupportFactory {
     private ConnectionSupportFactory(){
         try {
             properties = new Properties();
-            properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\SQL.properties"));
+            properties.load(new FileInputStream("C:\\Users\\Ainaz\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\SQL.properties"));
 
             String driverName = properties.getProperty("jdbc.driver");
             String URL = properties.getProperty("jdbc.URL");

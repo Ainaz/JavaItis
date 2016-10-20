@@ -1,6 +1,7 @@
 package servlets;
 
 import factory.ServicesSupportFactory;
+import models.Car;
 import services.CarsService;
 
 import javax.servlet.ServletException;
@@ -22,17 +23,18 @@ public class CarsServlet extends HttpServlet{
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-        response.setContentType("text/html; charset=UTF-8");
-        List<String> cars = carsService.getAllCars();
-        PrintWriter out = null;
         try {
-            out = response.getWriter();
-            out.println("<h1> Список владельцев: </h1>");
-            for(String car : cars) {
-                out.println("<p>" + car + "</p>");
-            }
+            response.setContentType("text/html; charset=UTF-8");
+            List<Car> cars = carsService.getAllCars();
+
+            request.setAttribute("Cars", cars);
+
+            getServletContext().getRequestDispatcher("/cars.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-        e.printStackTrace();
+            e.printStackTrace();
+        }
     }
     }
 }
