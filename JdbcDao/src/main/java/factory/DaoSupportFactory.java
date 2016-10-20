@@ -22,7 +22,7 @@ public class DaoSupportFactory {
     private DaoSupportFactory(){
        try {
            properties = new Properties();
-           properties.load(new FileInputStream("C:\\Users\\Ainaz\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\dao.properties"));
+           properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\dao.properties"));
 
            String carsDaoClass = properties.getProperty("carsdao.class");
            String ownersDaoClass = properties.getProperty("ownersdao.class");

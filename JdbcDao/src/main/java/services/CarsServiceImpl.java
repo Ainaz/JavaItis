@@ -3,6 +3,8 @@ package services;
 import dao.CarsDao;
 import models.Car;
 
+import java.util.List;
+
 public class CarsServiceImpl implements CarsService {
 
     private CarsDao carsDao;
@@ -15,8 +17,8 @@ public class CarsServiceImpl implements CarsService {
         return carsDao.find(id);
     }
 
-    public void getAllCars() {
-        this.carsDao.getAll();
+    public List getAllCars() {
+        return this.carsDao.getAll();
     }
 
     public void deleteCarInId(int id) {

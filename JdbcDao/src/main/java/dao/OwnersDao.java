@@ -2,12 +2,11 @@ package dao;
 
 import models.Owner;
 
-/**
- * Created by KFU-user on 12.10.2016.
- */
+import java.util.List;
+
 public interface OwnersDao {
     Owner find(int id);
-    void getAll();
+    List getAll();
     void delete(int id);
     void add(Owner owner);
     void update(Owner owner);

@@ -4,6 +4,8 @@ package services;
 import dao.OwnersDao;
 import models.Owner;
 
+import java.util.List;
+
 public class OwnersServiceImpl implements OwnersService {
     private OwnersDao ownersDao;
 
@@ -15,8 +17,8 @@ public class OwnersServiceImpl implements OwnersService {
         return ownersDao.find(id);
     }
 
-    public void getAllOwners() {
-        this.ownersDao.getAll();
+    public List getAllOwners() {
+       return this.ownersDao.getAll();
     }
 
     public void deleteOwnerInId(int id) {

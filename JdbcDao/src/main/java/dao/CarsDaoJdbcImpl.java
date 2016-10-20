@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CarsDaoJdbcImpl implements CarsDao {
@@ -37,7 +39,8 @@ public class CarsDaoJdbcImpl implements CarsDao {
         }
     }
 
-    public void getAll() {
+    public List getAll() {
+        ArrayList carsList = new ArrayList();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_ALL_CARS);
             ResultSet result = preparedStatement.executeQuery();
@@ -45,9 +48,11 @@ public class CarsDaoJdbcImpl implements CarsDao {
             while (result.next()){
                 int autoId = result.getInt("auto_id");
                 String autoName = result.getString("auto_name");
-                int mileage = result.getInt("mileade");
-                System.out.println("ID = " + autoId + ", Auto = " + autoName + ", Mileage = " + mileage);
+                int mileage = result.getInt("mileage");
+                String cars ="ID = " + autoId + ", Auto = " + autoName + ", Mileage = " + mileage;
+                carsList.add(cars);
             }
+            return carsList;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }

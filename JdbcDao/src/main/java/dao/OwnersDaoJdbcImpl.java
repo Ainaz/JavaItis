@@ -1,12 +1,13 @@
 package dao;
 
-import dao.OwnersDao;
 import models.Owner;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OwnersDaoJdbcImpl implements OwnersDao {
 
@@ -36,18 +37,22 @@ public class OwnersDaoJdbcImpl implements OwnersDao {
         }
     }
 
-    public void getAll() {
+    public List getAll() {
         try {
+            ArrayList ownersList = new ArrayList();
+
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_ALL_OWNERS);
             ResultSet result = preparedStatement.executeQuery();
 
             while (result.next()){
                 int ownerId = result.getInt("owner_id");
-                String ownerName = result.getString("FIO");
+                String ownerName = result.getString("fio");
                 int ownerAge = result.getInt("owner_age");
                 String ownerCity = result.getString("owner_city");
-                System.out.println("ID = " + ownerId + ", Owner = " + ownerName + ", Age = " + ownerAge + ", City = " + ownerCity);
+                String ownerString = "ID = " + ownerId + ", Owner = " + ownerName + ", Age = " + ownerAge + ", City = " + ownerCity;
+                ownersList.add(ownerString);
             }
+            return ownersList;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }
