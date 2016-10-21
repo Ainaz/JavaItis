@@ -18,10 +18,9 @@
         </c:forEach>
     </p>
     <form action="cars" method="post">
-        ID: <input type="id" name ="carID">
         Name: <input type="text" name="carName">
-        Mileage: <input type="mileage" name="mileage">
-        <input type="submit" value="Submit">
+        Mileage: <input type="text" name="mileage">
+        <input type="submit" value="Add">
     <span class="error">${error}</span>
 </form>
 </body>

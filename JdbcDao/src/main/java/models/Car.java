@@ -12,6 +12,11 @@ public class Car {
         this.mileage = mileage;
     }
 
+    public Car(String name, int mileage){
+        this.name = name;
+        this.mileage = mileage;
+    }
+
     public int getId() {
         return id;
     }
@@ -23,6 +28,5 @@ public class Car {
     public int getMileage() {
         return mileage;
     }
-
 
 }
