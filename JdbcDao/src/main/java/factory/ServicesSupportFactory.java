@@ -22,7 +22,7 @@ public class ServicesSupportFactory {
     private ServicesSupportFactory(){
         try{
             properties = new Properties();
-            properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\services.properties"));
+            properties.load(new FileInputStream("C:\\Users\\Ainaz\\Desktop\\JavaItis\\JdbcDao\\src\\main\\resources\\services.properties"));
 
             String carsServiceClass = properties.getProperty("carsservice.class");
             String ownersServiceClass = properties.getProperty("ownersservice.class");
