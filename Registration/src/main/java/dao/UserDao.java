@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UserDao {
     List<User> getAll();
-    void add(User autos);
-    User find(int id);
+    String registration(User users);
+    User find(String login);
+    User findByToken(String token);
+    void update(String token, int id);
 }

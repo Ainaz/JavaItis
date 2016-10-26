@@ -9,14 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ainaz on 25.10.2016.
- */
+
 public class AutoDaoImpl implements AutoDao {
 
-    public final String SQL_ALL_CARS = "SELECT * FROM auto";
-    public final String SQL_FIND_CARS = "SELECT * FROM auto WHERE auto_id = ?";
-    public final String SQL_ADD_CARS = "INSERT INTO auto (auto_name, auto_number, user_id) VALUES (?,?)";
+    private final String SQL_ALL_CARS = "SELECT * FROM auto";
+    private final String SQL_FIND_CARS = "SELECT * FROM auto WHERE auto_id = ?";
+    private final String SQL_ADD_CARS = "INSERT INTO auto (auto_name, auto_number, user_id) VALUES (?,?,?)";
 
     private Connection connection;
 
@@ -51,7 +49,7 @@ public class AutoDaoImpl implements AutoDao {
                 ResultSet result = preparedStatement.executeQuery();
 
                 result.next();
-                return new Auto(result.getInt("auto_id"), result.getString("auto_name"), result.getInt("mileade"));
+                return new Auto(result.getString("auto_name"), result.getString("auto_number"), result.getInt("user_id"));
             } catch (SQLException e) {
                 throw new IllegalStateException(e);
             }
