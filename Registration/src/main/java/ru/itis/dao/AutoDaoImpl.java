@@ -1,6 +1,6 @@
-package dao;
+package ru.itis.dao;
 
-import models.Auto;
+import ru.itis.models.Auto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,9 +31,10 @@ public class AutoDaoImpl implements AutoDao {
             while (result.next()){
                 int autoId = result.getInt("auto_id");
                 String autoName = result.getString("auto_name");
-                int mileage = result.getInt("mileage");
-                String cars ="ID = " + autoId + ", Auto = " + autoName + ", Mileage = " + mileage;
-                carsList.add(cars);
+                String autoNumber = result.getString("auto_number");
+                int userId = result.getInt("user_id");
+                Auto auto = new Auto(autoId, autoName, autoNumber, userId);
+                carsList.add(auto);
             }
             return carsList;
         } catch (SQLException e) {

@@ -1,6 +1,6 @@
-package dao;
+package ru.itis.dao;
 
-import models.User;
+import ru.itis.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

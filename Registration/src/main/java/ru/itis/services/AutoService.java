@@ -1,7 +1,7 @@
-package services;
+package ru.itis.services;
 
 
-import models.Auto;
+import ru.itis.models.Auto;
 
 import java.util.List;
 

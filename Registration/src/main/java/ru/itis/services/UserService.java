@@ -1,7 +1,7 @@
-package services;
+package ru.itis.services;
 
 
-import models.User;
+import ru.itis.models.User;
 
 import java.util.List;
 
