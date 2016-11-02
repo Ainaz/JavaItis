@@ -1,7 +1,10 @@
 package ru.itis.dao;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.itis.models.User;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +23,13 @@ public class UserDaoImpl implements UserDao {
     private final String SQL_FIND_USER = "SELECT * FROM users WHERE user_login=?";
     private final String SQL_FIND_USER_BY_TOKEN = "SELECT * FROM users WHERE user_token=?";
 
-    public UserDaoImpl(Connection connection) {
-        this.connection = connection;
+    public UserDaoImpl(DataSource dataSource) {
+        try {
+            this.connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("CookieBeans.xml");
     }
 
     public List<User> getAll() {

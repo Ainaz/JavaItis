@@ -17,19 +17,18 @@
         <property name="password" value="132safin"/>
     </bean>
 
-    <context:component-scan base-package="ru.itis" />
-    <tx:annotation-driven transaction-manager="txManager"/>
-
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
+    <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate" id="namedParameterJdbcTemplate">
+        <constructor-arg type="javax.sql.DataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="userDao" class="ru.itis.services.UserDaoImpl">
+    <bean id="userDao" class="ru.itis.dao.UserDaoImpl">
         <constructor-arg ref="dataSource"></constructor-arg>
+        <constructor-arg ref="namedParameterJdbcTemplate"></constructor-arg>
     </bean>
 
-    <bean id="autoDao" class="ru.itis.services.AutoDaoImpl">
+    <bean id="autoDao" class="ru.itis.dao.AutoDaoImpl">
         <constructor-arg ref="dataSource"></constructor-arg>
+        <constructor-arg ref="namedParameterJdbcTemplate"></constructor-arg>
     </bean>
 
     <bean id="userService" class="ru.itis.services.UserServiceImpl">
@@ -37,7 +36,7 @@
     </bean>
 
     <bean id="autoService" class="ru.itis.services.AutoServiceImpl">
-        <constructor-arg ref="userDao"></constructor-arg>
+        <constructor-arg ref="autoDao"></constructor-arg>
     </bean>
 
 
