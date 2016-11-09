@@ -24,11 +24,11 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="userDao" class="ru.itis.services.UserDaoImpl">
+    <bean id="userDao" class="ru.itis.dao.UserDaoImpl">
         <constructor-arg ref="dataSource"></constructor-arg>
     </bean>
 
-    <bean id="autoDao" class="ru.itis.services.AutoDaoImpl">
+    <bean id="autoDao" class="ru.itis.dao.AutoDaoImpl">
         <constructor-arg ref="dataSource"></constructor-arg>
     </bean>
 
