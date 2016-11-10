@@ -10,7 +10,7 @@ import ru.itis.models.User;
 import ru.itis.services.UserService;
 
 @Controller
-public class RegistrationController{
+public class RegistrationController {
 
     @Autowired
     private UserService userService;
@@ -22,19 +22,22 @@ public class RegistrationController{
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public ModelAndView registrationNewUser(@RequestParam("userName") String userName, @RequestParam("userLogin") String userLogin, @RequestParam("password") String password){
+    public ModelAndView registrationNewUser(@RequestParam("userName") String userName,
+                                            @RequestParam("userLogin") String login,
+                                            @RequestParam("password") String password){
         ModelAndView modelAndView = new ModelAndView();
         User user = null;
+
         try {
-            user = userService.findUserByLogin(userLogin);
+            user = userService.findUserByLogin(login);
         }catch (NullPointerException e){}
+
         if(user != null){
-            User user1 = new User(userName, userLogin, password.hashCode());
+            User user1 = new User(userName, login, password.hashCode());
             userService.registrationUser(user1);
             modelAndView.setViewName("login");
-        }else {
+        }else{
             modelAndView.setViewName("registration");
         }
         return modelAndView;
