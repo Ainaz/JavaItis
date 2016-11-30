@@ -7,6 +7,6 @@ import java.util.List;
 public interface MessageDao {
     List<Message> findAll();
     Message find(int messageId);
-    int save(Message message);
+    void save(Message message);
     void update(Message message);
 }
