@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface UserDao {
     List<User> findAll();
-    User find(Integer id);
-    Integer save(User user);
+    User find(String login);
+    void save(User user);
     void delete(Integer id);
-    void update(User user);
+    void update(User user, String token);
     void saveUserToChat(Integer userId, Integer chatId);
 }

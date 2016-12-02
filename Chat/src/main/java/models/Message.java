@@ -3,38 +3,38 @@ package models;
 public class Message {
     private int messageId;
     private String messageText;
-    private User user;
+    private int userId;
+    private int chatId;
 
-    public Message(){
+    public Message() {
     }
 
-    public Message(int messageId, String messageText, User user) {
+    public Message(String messageText, int userId, int chatId) {
+        this.messageText = messageText;
+        this.userId = userId;
+        this.chatId = chatId;
+    }
+
+    public Message(int messageId, String messageText, int userId, int chatId) {
         this.messageId = messageId;
         this.messageText = messageText;
-        this.user = user;
+        this.userId = userId;
+        this.chatId = chatId;
     }
 
     public int getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(int messageId) {
-        this.messageId = messageId;
-    }
-
     public String getMessageText() {
         return messageText;
     }
 
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
+    public int getUserId() {
+        return userId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public int getChatId() {
+        return chatId;
     }
 }
